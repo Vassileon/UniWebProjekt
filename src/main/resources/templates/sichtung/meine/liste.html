@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<title></title>
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/sichtung_style.css}">
+</head>
+<body>
+    
+    <div>
+        <a th:href="@{?sprache=de}"> deutsch</a><a>-</a><a th:href="@{?sprache=en}"> english</a>
+    </div>
+    <div>
+        <h1>User : <span th:text="${loggedinusername}"></span></h1>
+
+        <table>
+            <thead>
+                <th th:text="#{form.name}"></th>
+                <th th:text="#{form.ort}"></th>
+                <th th:text="#{form.datum}"></th>
+                <th th:text="#{form.beschreibung}"></th>
+            </thead>
+            <tbody>
+                <tr th:each="x:${meinesichtungen}">
+                    <td th:text="${x.getName()}">test</td>
+                    <td th:text="${x.getOrt()}">test</td>
+                    <td th:text="${x.getDatum()}">test</td>
+                    <td th:text="${x.getBeschreibung()}">test</td>
+                    <td> <a th:href="@{meine/{zeile}/edit (zeile = ${meinesichtungen.indexOf(x)})}">[edit]</a></td>
+                    <td> <a th:href="@{meine/{zeile}/del (zeile = ${meinesichtungen.indexOf(x)})}">[delete]</a></td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+    <a th:href="@{/sichtung/meine/neu}"> Neue Sichtung hinzufügen </a>
+    
+</body>
+</html>

@@ -1,0 +1,7 @@
+body{
+    background-color: lightblue;
+}
+.falscheEingabe{
+    border-color: red;
+    border-width: 1px;
+}

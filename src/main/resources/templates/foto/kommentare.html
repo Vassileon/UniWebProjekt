@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<title></title>
+<head>
+    <link rel="stylesheet"  th:href="@{/login_style.css}">
+</head>
+<body>
+
+    <a th:href="@{/foto}">[back]</a>
+    <div>
+        <span th:text="${foto.getDateiname()}"></span><br>
+        <span th:text="${foto.getZeitstempel()}"></span><br>
+        <img th:src="@{foto/{id} (id = ${foto.getId()})}"/><br>
+        <a target="_blank"
+            th:href="|https://www.openstreetmap.org/#map=17/${foto.geobreite}/${foto.geolaenge}|"
+            th:text="${foto.ort}"></a><br>
+        <a th:href="@{foto/{id}/del (id = ${foto.getId()})}">[delete]</a>
+    </div>
+
+    <div th:if="${loggedinusername}">
+        <h1 th:text="${loggedinusername}"></h1>
+        <form class="form" th:action="@{/foto/{nummer}/kommentar (nummer = ${foto.getId()})}" th:method="POST">
+            <div>
+                <a>test</a>
+                <label>test</label>
+                <input class="input" type="text" name="kommentar"/>
+            </div>
+            <div>
+                <input class="submit" type="submit">
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <h3> Kommentare : </h3>
+        <div th:each="kommentar: ${kommentare}">
+            <div>
+                <h3 th:text="${kommentar.getAutor()}"></h3>
+                <h5 th:text="${kommentar.getZeitpunkt()}"></h5>
+            </div>
+            <h5 th:text="${kommentar.getText()}"></h5>
+        </div>
+    </div>
+    
+</body>
+</html>

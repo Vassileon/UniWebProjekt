@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<title></title>
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/sichtung_style.css}">
+</head>
+<body>
+    
+    <div>
+        <h1>Neue Sichtung von <span th:text="${loggedinusername}"></span></h1>
+
+        <form class="form" th:action="@{/sichtung/meine/neu}" th:object="${meinesichtungform}" th:method="post">
+            <div>
+                <label th:text="#{form.name}"></label>
+                <input class="input" type="text" th:errorclass="falscheEingabe" th:field="*{name}"/>
+                    	<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+            <div>
+                <label th:text="#{form.ort}"></label>
+                <input class="input" type="text" th:errorclass="falscheEingabe" th:field="*{ort}"/>
+                    <span th:if="${#fields.hasErrors('ort')}" th:errors="*{ort}"></span>
+            </div>
+            <div>
+                <label th:text="#{form.datum}"></label>
+                <input class="input" type="date" th:errorclass="falscheEingabe" th:field="*{datum}"/>
+                    <span th:if="${#fields.hasErrors('datum')}" th:errors="*{datum}"></span>
+            </div>
+            <div>
+                <label th:text="#{form.beschreibung}"></label>
+                <input class="input" type="text" th:errorclass="falscheEingabe" th:field="*{beschreibung}"/>
+                    <span th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}"></span>
+            </div>
+            <div>
+                <button type="submit" th:text="#{form.add}"></button>
+            </div>
+        </table>
+    </div>
+    
+</body>
+</html>
